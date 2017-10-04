@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('inicio'); });
+
+
+
+
+Route::post('graph', 'GraphController@graph');
+Route::get('graph', 'GraphController@graph2');
