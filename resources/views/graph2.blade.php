@@ -8,6 +8,7 @@
         <div id="result" style="width:100%; height:700px;"></div>
         
     </div>
+    <style type="text/css" media="screen">.highcharts-credits{display: none !important;}</style>
 @endsection
 
 
@@ -19,8 +20,9 @@
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 <script>
 
-let round = (n) => parseFloat(n.toFixed(2));
 
+
+let round = (n) => parseFloat(n.toFixed(2));
 let elevations = [];
 
 elevations['P. la bomba'] = 905;
@@ -31,8 +33,6 @@ elevations['P. ESEN'] = 992;
 elevations['P-1 la Joya'] = 905;
 
     
-console.log( elevations['P-1 la Joya'] );
-
 Highcharts.chart('result', {
     chart: {
         type: 'column'
