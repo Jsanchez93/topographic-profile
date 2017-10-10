@@ -22,8 +22,8 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <!--[if lt IE 9]>
 <script src="https://code.highcharts.com/modules/oldie.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
 <![endif]-->
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script>
 
 
@@ -88,11 +88,40 @@ let make_elevation = (chart) => {
 
     
 Highcharts.chart('result', {
+    exporting: {
+        sourceWidth: 1000,
+        filename: "finca-miramar_b-b",
+        chartOptions: {
+            subtitle: {
+                text: "Elevación (msnm)",
+                style: {            
+                    color: "#815a38",
+                    fontWeight: 'bold',
+                    fontSize: '14px'
+                }
+            }
+        }
+    },
+
+    navigation: {
+        buttonOptions: {
+            verticalAlign: 'top',
+            align: 'left',
+            y: 0
+        }
+    },
     chart: {
         type: 'column'
     },
     title: {
         text: ''
+    },
+    subtitle: {
+        text: "Finca Miramar B-B",
+        style: {                        
+            //fontWeight: 'bold',
+            fontSize: '14px'
+        }
     },
     xAxis: {
         opposite: true,
