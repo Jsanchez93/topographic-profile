@@ -46,6 +46,14 @@ auxDepth['Punto 2'] = 122;
 auxDepth['P. ESEN'] = 158;
 auxDepth['P-1 la Joya'] = 245;
 
+let auxNE = [];
+auxNE['P. la bomba'] = 132;
+auxNE['Casco'] = 180;
+auxNE['Punto 4'] = 165;
+auxNE['Punto 2'] = 161;
+auxNE['P. ESEN'] = 155;
+auxNE['P-1 la Joya'] = 138;
+
 let make_elevation = (chart) => {    
     let colunms = chart.axes[1]; 
     let offsetCanvas = colunms.top;               //offset of graph
@@ -105,13 +113,13 @@ Highcharts.chart('result', {
         labels: {
             format: '{value} m',
             style: {
-                color: "#7cb5ed"
+                color: "#5b9fe1"
             }
         },
         title: {
             text: 'N.E. aprox',
             style: {
-                color: "#7cb5ed"
+                color: "#5b9fe1"
             }
         },
         opposite: true,
@@ -157,7 +165,7 @@ Highcharts.chart('result', {
         data: [132, 180, 165, 161, 155, 138],
         color: "#134eb0",
         dataLabels: {
-            enabled: true,
+            enabled: true,            
             formatter: function(){
                 let name =this.point.category;
                 let total = this.total;
@@ -177,11 +185,18 @@ Highcharts.chart('result', {
         name: 'N.E aprox',
         type: 'spline',
         yAxis: 1,
-        color: "#7cb5ed",
+        color: "#5b9fe1",
         data: [round(201.2-132)+245, 120, (300-165+94), (300-161+122), (274-155+158), (243-138+245)],
         dataLabels: {
             enabled: true,
-            format: '{y} m'
+            style: {
+                color: "#5b9fe1",
+                textOutline: "0px"
+            },
+            formatter: function(){
+                let name = this.point.category;
+                return auxNE[name] + " m";
+            }   
         }
     },{
         name: 'Elevación',
