@@ -38,11 +38,15 @@ elevations['P. ESEN'] = 992;
 elevations['P-1 la Joya'] = 905;
 let elevationsCanvas = [905,1150,1056,1028,992,905];
 
-let make_elevation = (chart) => {
-    /*
-    let tmp = document.getElementById('tmp');
-    tmp.style.height = chart.axes[1].height + 'px';
-    */
+let auxDepth = [];
+auxDepth['P. la bomba'] = 245;
+auxDepth['Casco'] = 0;
+auxDepth['Punto 4'] = 94;
+auxDepth['Punto 2'] = 122;
+auxDepth['P. ESEN'] = 158;
+auxDepth['P-1 la Joya'] = 245;
+
+let make_elevation = (chart) => {    
     let colunms = chart.axes[1]; 
     let offsetCanvas = colunms.top;               //offset of graph
 
@@ -51,9 +55,8 @@ let make_elevation = (chart) => {
     CanvasContainer.innerHTML = '<canvas id="ElevationCanvas" width="60" height="'+ colunms.height +'"></canvas>';    
 
     let ElevationCanvas = document.getElementById('ElevationCanvas');    
-    let offset = colunms.series[2].data;                                //depth offset by elevation 
+    let offset = colunms.series[2].data;    //depth offset by elevation 
                                             
-
     //Drawing
     let ctx = ElevationCanvas.getContext('2d');
     ctx.fillStyle = "#815a38";
@@ -66,8 +69,6 @@ let make_elevation = (chart) => {
         ctx.font = "12px Arial";
         ctx.fillText( elevationsCanvas[elem.index] + " m", 6, h+5 );
     });
-
-
     
     ctx.save();
     ctx.translate(5, colunms.height - 70);
@@ -75,10 +76,7 @@ let make_elevation = (chart) => {
     ctx.font = "15px Arial";
     ctx.fillText("Elevación", 0, 0);
     ctx.restore();
-    
-    
 }
-
 
     
 Highcharts.chart('result', {
@@ -160,7 +158,12 @@ Highcharts.chart('result', {
         color: "#134eb0",
         dataLabels: {
             enabled: true,
-            format: '{y} m'
+            formatter: function(){
+                let name =this.point.category;
+                let total = this.total;
+                let depth = (total - auxDepth[name]) + " m";
+                return depth;
+            }            
         }
     },{
         name: 'Aire',
@@ -175,7 +178,11 @@ Highcharts.chart('result', {
         type: 'spline',
         yAxis: 1,
         color: "#7cb5ed",
-        data: [round(201.2-132)+245, 120, (300-165+94), (300-161+122), (274-155+158), (243-138+245)]        
+        data: [round(201.2-132)+245, 120, (300-165+94), (300-161+122), (274-155+158), (243-138+245)],
+        dataLabels: {
+            enabled: true,
+            format: '{y} m'
+        }
     },{
         name: 'Elevación',
         type: 'spline',
