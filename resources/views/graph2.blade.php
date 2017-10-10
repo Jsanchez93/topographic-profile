@@ -3,9 +3,10 @@
 @section("cuerpo")
     <div class="container">
         <div class="row">
-            <div class="col s12">
+            <div class="col s11">
                 <p class="flow-text center-align">Gráfica perfil topográfico</p>    
             </div>
+            <div class="col s1"></div>
         </div>        
         <div class="row">
             <div class="col s11" style="padding: 0 !important">
