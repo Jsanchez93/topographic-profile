@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class GraphController extends Controller
 {
     public function graph(Request $request){
+
     	$elevation = $request->post('elevation');
         sort($elevation);
         $data['max_elevation'] = end($elevation);
@@ -34,7 +35,7 @@ class GraphController extends Controller
         $data['elevation'] = $request->post('elevation');
         $data['NE'] = $request->post('NE');
         $data['depth'] = $request->post('depth');
-
+        
     	return view('graph', $data);
     }
 

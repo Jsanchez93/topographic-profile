@@ -33,7 +33,7 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script>
 
-
+let round = (n) => parseFloat(n.toFixed(2));
 let elevations = [];
 @foreach ($elevation as $element)
     elevations['{{ $location[$loop->index] }}'] = {{ $element }};
@@ -182,7 +182,7 @@ Highcharts.chart('result', {
         formatter: function(arg){
             let name = this.x;
             let NE = this.points[0].point.y;
-            let depth = this.points[0].point.y + this.points[1].point.y;
+            let depth = round(this.points[0].point.y + this.points[1].point.y);
             let elevation = elevations[name];
             return "<b>"+name+"</b><br />Elevación: "+elevation+" m.<br />N.E. aprox: "+NE+" m.<br /><br />Profundidad: "+depth+" m.";
             
@@ -218,7 +218,7 @@ Highcharts.chart('result', {
             formatter: function(){
                 let name =this.point.category;
                 let total = this.total;
-                let depth = (total - auxDepth[name]) + " m";
+                let depth = round(total - auxDepth[name]) + " m";
                 return depth;
             }            
         }
@@ -239,7 +239,7 @@ Highcharts.chart('result', {
         data: [
             @foreach ($offset as $element)
                 @if ($loop->last)
-                    {{ $element}} //ARRAY
+                    {{ $element}} 
                 @else
                     {{ $element}},
                 @endif            
@@ -278,7 +278,7 @@ Highcharts.chart('result', {
         data: [
             @foreach ($offset as $element)
                 @if ($loop->last)
-                    {{ $element}} //ARRAY
+                    {{ $element}}
                 @else
                     {{ $element}},
                 @endif            
