@@ -8,7 +8,7 @@
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         @yield("cssExtra")
-        <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/index.css') }}?{{ getdate()[0] }}">
     </head>
     <body>       
 
@@ -56,6 +56,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="https://use.fontawesome.com/9f30913a69.js"></script>
          @yield("jsExtra")
-        <script src="{{ asset('js/index.js') }}"></script>
+        <script src="{{ asset('js/index.js') }}?{{ getdate()[0] }}"></script>
     </body>
 </html>
