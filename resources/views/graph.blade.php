@@ -198,7 +198,8 @@ Highcharts.chart('result', {
                 hover: {
                     enabled: false
                 }
-            }
+            },
+            pointWidth: 20
         }
     },
     series: [{
@@ -214,13 +215,18 @@ Highcharts.chart('result', {
         ],
         color: "#134eb0",
         dataLabels: {
-            enabled: true,            
+            enabled: true,                        
             formatter: function(){
-                let name =this.point.category;
+                let name = this.point.category;
                 let total = this.total;
-                let depth = round(total - auxDepth[name]) + " m";
+                let depth = (total - auxDepth[name]) + " m";
                 return depth;
-            }            
+            },
+            style: {
+                color: "#333333"
+            },
+            verticalAlign: 'bottom',
+            y: 20         
         }
     },{
         name: 'Aire',
