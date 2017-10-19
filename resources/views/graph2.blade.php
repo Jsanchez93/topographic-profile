@@ -3,21 +3,89 @@
 @section("cuerpo")
     <div class="container">
         <div class="row">
-            <div class="col s11">
+            <div class="col s12 m6 l11 xl11">
                 <p class="flow-text center-align">Gráfica perfil topográfico</p>    
             </div>
-            <div class="col s1"></div>
+            <div class="col s12 m6 l1 xl1">
+                <p class="flow-text center-align">
+                    <a href="{{ url('/') }}">                    
+                        <button class="btn waves-effect waves-light" name="add-data">Nueva Gráfica</button>
+                    </a>
+                </p>
+            </div>
         </div>        
         <div class="row">
-            <div class="col s11" style="padding: 0 !important">
-                <div id="result" style="width:100%; height:600px;"></div>
+            <div class="col s10 m11 l11 xl11 n-p">
+                <div id="result"></div>
             </div>
-            <div id="CanvasContainer" class="col s1" style="padding: 0 !important"></div>
-        </div>        
+            <div id="CanvasContainer" class="col s2 m1 l1 xl1 n-p"></div>
+        </div>
+        <div class="row">
+            <form method="post" action="{{ url('graph') }}">
+                <div class="col s12 m12 offset-l2 l8 offset-xl2 xl8 input-field">
+                    <input required="required" name="mainName" type="text" class="validate" value="Finca Miramar B-B">
+                    <label for="location">Título</label>
+                </div>
+                <div class="col s12 m12 offset-l2 l8 offset-xl2 xl8">
+                    {{ csrf_field() }}                                        
+                    <table class="bordered highlight responsive-table">
+                        <thead>
+                            <tr>
+                                <th>Ubicación</th>
+                                <th>Elevación (msnm)</th>
+                                <th>N.E. aprox. (m)</th>
+                                <th>Profundidad (m)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input required="required" name="location[]" type="text" class="validate browser-default" value="P.l bomba"></td>
+                                <td><input required="required" name="elevation[]" type="number" step=".01" class="validate browser-default" value="905"></td>
+                                <td><input required="required" name="NE[]" type="number" step=".01" class="validate browser-default" value="132"></td>
+                                <td><input required="required" name="depth[]" type="number" step=".01" class="validate browser-default" value="201.2"></td>
+                            </tr>
+                            <tr>
+                                <td><input required="required" name="location[]" type="text" class="validate browser-default" value="Casco"></td>
+                                <td><input required="required" name="elevation[]" type="number" step=".01" class="validate browser-default" value="1150"></td>
+                                <td><input required="required" name="NE[]" type="number" step=".01" class="validate browser-default" value="180"></td>
+                                <td><input required="required" name="depth[]" type="number" step=".01" class="validate browser-default" value="300"></td>
+                            </tr>
+                            <tr>
+                                <td><input required="required" name="location[]" type="text" class="validate browser-default" value="Punto 4"></td>
+                                <td><input required="required" name="elevation[]" type="number" step=".01" class="validate browser-default" value="1056"></td>
+                                <td><input required="required" name="NE[]" type="number" step=".01" class="validate browser-default" value="165"></td>
+                                <td><input required="required" name="depth[]" type="number" step=".01" class="validate browser-default" value="300"></td>
+                            </tr>
+                            <tr>
+                                <td><input required="required" name="location[]" type="text" class="validate browser-default" value="Punto 2"></td>
+                                <td><input required="required" name="elevation[]" type="number" step=".01" class="validate browser-default" value="1028"></td>
+                                <td><input required="required" name="NE[]" type="number" step=".01" class="validate browser-default" value="161"></td>
+                                <td><input required="required" name="depth[]" type="number" step=".01" class="validate browser-default" value="300"></td>
+                            </tr>
+                            <tr>
+                                <td><input required="required" name="location[]" type="text" class="validate browser-default" value="P. Esen"></td>
+                                <td><input required="required" name="elevation[]" type="number" step=".01" class="validate browser-default" value="992"></td>
+                                <td><input required="required" name="NE[]" type="number" step=".01" class="validate browser-default" value="155"></td>
+                                <td><input required="required" name="depth[]" type="number" step=".01" class="validate browser-default" value="274"></td>
+                            </tr>
+                            <tr>
+                                <td><input required="required" name="location[]" type="text" class="validate browser-default" value="P-1 la Joya"></td>
+                                <td><input required="required" name="elevation[]" type="number" step=".01" class="validate browser-default" value="905"></td>
+                                <td><input required="required" name="NE[]" type="number" step=".01" class="validate browser-default" value="138"></td>
+                                <td><input required="required" name="depth[]" type="number" step=".01" class="validate browser-default" value="243"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col s12 m12 offset-l2 l8 offset-xl2 xl8 right-align">
+                    <button class="btn waves-effect waves-light" id="update-graph" type="submit" name="action">Actualizar
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-    <style type="text/css" media="screen">.highcharts-credits{display: none !important;}</style>
 @endsection
-
 
 @section("jsExtra")
 <script src="https://code.highcharts.com/highcharts.js"></script>

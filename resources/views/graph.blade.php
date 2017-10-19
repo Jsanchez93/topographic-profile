@@ -15,37 +15,48 @@
             </div>
         </div>        
         <div class="row">
-            <div class="col s10 m11 l11 xl11" style="padding: 0 !important">
-                <div id="result" style="width:100%; height:600px;"></div>
+            <div class="col s10 m11 l11 xl11 n-p">
+                <div id="result"></div>
             </div>
-            <div id="CanvasContainer" class="col s2 m1 l1 xl1" style="padding: 0 !important"></div>
+            <div id="CanvasContainer" class="col s2 m1 l1 xl1 n-p"></div>
         </div>
         <div class="row">
-            <div class="col s12 m12 offset-l2 l8 offset-xl2 xl8">
-                <table class="bordered highlight responsive-table">
-                <thead>
-                    <tr>
-                        <th>Ubicación</th>
-                        <th>Elevación (msnm)</th>
-                        <th>N.E. aprox. (m)</th>
-                        <th>Profundidad (m)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($location as $element)
-                        <tr>
-                            <td>{{ $element }}</td>
-                            <td>{{ $elevation[$loop->index] }}</td>
-                            <td>{{ $NE[$loop->index] }}</td>
-                            <td>{{ $depth[$loop->index] }}</td>
-                        </tr>                        
-                    @endforeach                    
-                </tbody>
-                </table>
-            </div>
+            <form method="post" action="{{ url('graph') }}">                
+                <div class="col s12 m12 offset-l2 l8 offset-xl2 xl8 input-field">
+                    <input required="required" name="mainName" type="text" class="validate" value="{{ $title }}">
+                    <label for="location">Título</label>
+                </div>
+                <div class="col s12 m12 offset-l2 l8 offset-xl2 xl8">
+                    {{ csrf_field() }}                    
+                    <table class="bordered highlight responsive-table">
+                        <thead>
+                            <tr>
+                                <th>Ubicación</th>
+                                <th>Elevación (msnm)</th>
+                                <th>N.E. aprox. (m)</th>
+                                <th>Profundidad (m)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($location as $element)
+                                <tr>
+                                    <td><input required="required" name="location[]" type="text" class="validate browser-default" value="{{ $element }}"></td>
+                                    <td><input required="required" name="elevation[]" type="number" step=".01" class="validate browser-default" value="{{ $elevation[$loop->index] }}"></td>
+                                    <td><input required="required" name="NE[]" type="number" step=".01" class="validate browser-default" value="{{ $NE[$loop->index] }}"></td>
+                                    <td><input required="required" name="depth[]" type="number" step=".01" class="validate browser-default" value="{{ $depth[$loop->index] }}"></td>
+                                </tr>                        
+                            @endforeach                    
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col s12 m12 offset-l2 l8 offset-xl2 xl8 right-align">
+                    <button class="btn waves-effect waves-light" id="update-graph" type="submit" name="action">Actualizar
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-    <style type="text/css" media="screen">.highcharts-credits{display: none !important;}</style>
 @endsection
 
 
