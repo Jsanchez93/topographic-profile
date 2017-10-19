@@ -13,7 +13,7 @@
     <body>       
 
         <header>            
-            <nav>
+            <nav cl>
                 <div class="nav-wrapper teal darken-3">
                     <a href="{{ url('/') }}" class="brand-logo"><i class="fa fa-line-chart" aria-hidden="true"></i>Gráficas</a>
                     {{-- <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a> --}}

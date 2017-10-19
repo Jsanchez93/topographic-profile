@@ -1,6 +1,8 @@
 const formData = document.getElementById('form-data');
 const addData = document.getElementById('add-data');
-addData.addEventListener('click', addRow);
+
+if (addData)
+	addData.addEventListener('click', addRow);
 
 function addRow(event){
 	event.preventDefault();

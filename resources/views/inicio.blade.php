@@ -45,7 +45,7 @@
                             </div>
                             <div class="input-field col s12 m4 l4 xl4">
                                 <input required="required" name="NE[]" type="number" step=".01" class="validate" >
-                                <label for="NE">N.E. (Mts) Aprox.</label>
+                                <label for="NE">N.E. aprox. (m)</label>
                             </div>
                             <div class="input-field col s12 m4 l4 xl4">
                                 <input required="required" name="depth[]" type="number" step=".01" class="validate" >

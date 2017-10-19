@@ -3,10 +3,10 @@
 @section("cuerpo")
     <div class="container">
         <div class="row">
-            <div class="col s11">
+            <div class="col s12 m6 l11 xl11">
                 <p class="flow-text center-align">Gráfica perfil topográfico</p>    
             </div>
-            <div class="col s1">
+            <div class="col s12 m6 l1 xl1">
                 <p class="flow-text center-align">
                     <a href="{{ url('/') }}">                    
                         <button class="btn waves-effect waves-light" name="add-data">Nueva Gráfica</button>
@@ -15,11 +15,35 @@
             </div>
         </div>        
         <div class="row">
-            <div class="col s11" style="padding: 0 !important">
+            <div class="col s10 m11 l11 xl11" style="padding: 0 !important">
                 <div id="result" style="width:100%; height:600px;"></div>
             </div>
-            <div id="CanvasContainer" class="col s1" style="padding: 0 !important"></div>
-        </div>        
+            <div id="CanvasContainer" class="col s2 m1 l1 xl1" style="padding: 0 !important"></div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12 offset-l2 l8 offset-xl2 xl8">
+                <table class="bordered highlight responsive-table">
+                <thead>
+                    <tr>
+                        <th>Ubicación</th>
+                        <th>Elevación (msnm)</th>
+                        <th>N.E. aprox. (m)</th>
+                        <th>Profundidad (m)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($location as $element)
+                        <tr>
+                            <td>{{ $element }}</td>
+                            <td>{{ $elevation[$loop->index] }}</td>
+                            <td>{{ $NE[$loop->index] }}</td>
+                            <td>{{ $depth[$loop->index] }}</td>
+                        </tr>                        
+                    @endforeach                    
+                </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <style type="text/css" media="screen">.highcharts-credits{display: none !important;}</style>
 @endsection
